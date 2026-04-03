@@ -752,8 +752,9 @@ body.dark-mode .orbit-card i {
   color: transparent;
 }
 
-body.dark-mode .section-title {
-  background: linear-gradient(120deg, #ffffff 0%, #3d7eff 100%);
+body.dark-mode .section-title,
+body.dark-mode .section-title-left {
+  background: linear-gradient(120deg, #ffffff 0%, #c4daff 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -841,6 +842,7 @@ body.dark-mode .section-title {
   padding: 30px 0 10px;
   box-shadow: var(--shadow-main);
   border: 1px solid var(--border-color);
+  overflow: hidden; /* Added to keep everything neatly inside the rounded container */
 }
 
 .section-header {
@@ -848,7 +850,7 @@ body.dark-mode .section-title {
   justify-content: space-between;
   align-items: flex-end;
   margin-bottom: 20px;
-  padding: 0 32px;
+  padding: 0 48px; /* Synchronized padding with rail */
   max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
@@ -880,12 +882,12 @@ body.dark-mode .section-title {
 
 .content-rail {
   display: flex;
-  gap: 24px;
+  gap: 18px; /* Reduced gap for a tighter look */
   overflow-x: auto;
-  padding: 10px 32px 30px;
+  padding: 10px 48px 30px; /* Increased padding to stay away from the container edges */
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  justify-content: center; /* Căn giữa trên màn hình lớn */
+  justify-content: center; /* Centered again for balanced look */
   /* Hide scrollbar */
   -ms-overflow-style: none;  
   scrollbar-width: none;  
@@ -903,7 +905,7 @@ body.dark-mode .section-title {
 
 .audio-card {
   flex: 0 0 auto;
-  width: 180px;
+  width: 160px; /* Shrunk from 180px to be more compact */
   scroll-snap-align: start;
   cursor: pointer;
   position: relative;
@@ -1060,8 +1062,21 @@ body.dark-mode .section-title {
   transition: all 0.3s ease;
 }
 
+body.dark-mode .audio-title {
+  background: linear-gradient(120deg, #ffffff 0%, #d6e4ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 .audio-card:hover .audio-title {
   background: linear-gradient(135deg, #2b6ef0 0%, #5b9cff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+body.dark-mode .audio-card:hover .audio-title {
+  background: linear-gradient(135deg, #ffffff 0%, #3d7eff 100%);
   -webkit-background-clip: text;
   background-clip: text;
 }
