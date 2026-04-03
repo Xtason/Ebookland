@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Register - Ebookland</title>
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Background Decor (Crystalline Style) -->
+    <div class="background-decor">
+        <div class="geo-shape geo-1"></div>
+        <div class="geo-shape geo-2"></div>
+        <div class="geo-shape geo-3"></div>
+        <div class="particle p-1"></div>
+        <div class="particle p-2"></div>
+        <div class="particle p-3"></div>
+        <div class="particle p-4"></div>
+        <div class="particle p-5"></div>
+        
+    </div>
+
+    <!-- Main Container for Sliding Effect -->
+    <div class="container" id="container">
+        <!-- Sign Up Form (Initially on the left, hidden) -->
+        <div class="form-container sign-up-container">
+            <form action="#">
+                <h2>TẠO TÀI KHOẢN</h2>
+                <p class="subtitle">Tham gia cộng đồng yêu sách Ebookland</p>
+                <div class="input-group">
+                    <label>Họ và tên</label>
+                    <div class="input-wrapper">
+                        <i class="far fa-user"></i>
+                        <input type="text" placeholder="Nguyễn Văn A" required>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Email</label>
+                    <div class="input-wrapper">
+                        <i class="far fa-envelope"></i>
+                        <input type="email" placeholder="example@gmail.com" required>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Mật khẩu</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="••••••" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary">ĐĂNG KÝ</button>
+            </form>
+        </div>
+
+        <!-- Sign In Form (Initially on the right, visible) -->
+        <div class="form-container sign-in-container">
+            <form id="loginForm">
+                <div class="logo-box">
+                    <a href="trangchu.html"><i class="fas fa-lock"></i> Ebookland</a>
+                </div>
+                <h2>ĐĂNG NHẬP</h2>
+                <p class="subtitle">Vui lòng nhập thông tin tài khoản của bạn</p>
+                <div class="input-group">
+                    <label>Tên đăng nhập</label>
+                    <div class="input-wrapper">
+                        <i class="far fa-user"></i>
+                        <input type="text" id="loginUsername" placeholder="name" required>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Mật khẩu</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="••••••" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary">LOGIN</button>
+                <p class="foot-text-mobile">Chưa có tài khoản? <a href="#" id="signUpMobile">Đăng ký ngay</a></p>
+            </form>
+        </div>
+
+        <!-- Overlay Container (The sliding blue part) -->
+        <div class="overlay-container">
+            <div class="overlay">
+                <!-- panel on the relative left of overlay (shows when sign-up is visible) -->
+                <div class="overlay-panel overlay-left">
+                    <div class="info-content">
+                        <div class="illustration-box">
+                            <i class="fas fa-book-open floating-book"></i>
+                        </div>
+                        <h3>MỪNG BẠN TRỞ LẠI!</h3>
+                        <p>Nếu bạn đã có tài khoản, hãy đăng nhập để tiếp tục hành trình khám phá tri thức.</p>
+                        <button class="ghost" id="signIn">ĐĂNG NHẬP NGAY</button>
+                    </div>
+                </div>
+                <!-- panel on the relative right of overlay (shows when sign-in is visible) -->
+                <div class="overlay-panel overlay-right">
+                    <div class="info-content">
+                        <div class="illustration-box">
+                            <i class="fas fa-graduation-cap floating-book"></i>
+                        </div>
+                        <h3>BẠN CHƯA CÓ TÀI KHOẢN?</h3>
+                        <p>Đăng ký ngay để trải nghiệm kho sách khổng lồ và ngàn ưu đãi hấp dẫn từ Ebookland.</p>
+                        <button class="ghost" id="signUp">ĐĂNG KÝ TÀI KHOẢN</button>
+                    </div>
+                    <!-- Decorative Wave -->
+                    <div class="wave-box">
+                        <svg viewBox="0 0 500 150" preserveAspectRatio="none">
+                            <path d="M0.00,49.98 C149.99,150.00 349.82,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z" style="stroke: none; fill: rgba(255,255,255,0.15);"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript to toggle Panels & Handle Login -->
+    <script>
+        const signUpButton = document.getElementById('signUp');
+        const signInButton = document.getElementById('signIn');
+        const container = document.getElementById('container');
+        const loginForm = document.getElementById('loginForm');
+        const loginUsername = document.getElementById('loginUsername');
+
+        // Toggle Panels
+        signUpButton.addEventListener('click', () => {
+            container.classList.add("right-panel-active");
+        });
+
+        signInButton.addEventListener('click', () => {
+            container.classList.remove("right-panel-active");
+        });
+
+        // Handle Simulated Login
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const username = loginUsername.value;
+            
+            // Store simple user session
+            localStorage.setItem('user_name', username);
+            
+            // Visual feedback
+            const loginBtn = loginForm.querySelector('button[type="submit"]');
+            loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang xử lý...';
+            loginBtn.style.opacity = '0.7';
+
+            setTimeout(() => {
+                window.location.href = 'trangchu.html';
+            }, 800);
+        });
+    </script>
+</body>
+</html>
